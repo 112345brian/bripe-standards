@@ -1,0 +1,5 @@
+[standards]
+version = "1.0.0"
+profiles = []
+project_type = "application"
+checks = ["manifest"]

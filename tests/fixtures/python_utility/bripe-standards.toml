@@ -1,0 +1,5 @@
+[standards]
+version = "1.0.0"
+profiles = ["python"]
+project_type = "utility"
+checks = ["manifest", "profile-files", "python-layout"]

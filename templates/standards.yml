@@ -1,0 +1,17 @@
+name: Standards
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  standards:
+    uses: YOUR_GITHUB_OWNER/bripe-standards/.github/workflows/reusable.yml@v1
+    with:
+      advisory: true
+      python-checks: false
+      validator-source: YOUR_GITHUB_OWNER/bripe-standards@v1

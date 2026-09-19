@@ -1,0 +1,42 @@
+name: Bripe standards
+
+on:
+  workflow_call:
+    inputs:
+      advisory:
+        description: Report validator failures without failing the caller.
+        required: false
+        default: false
+        type: boolean
+      python-checks:
+        description: Run Ruff and pytest in a caller using the Python profile.
+        required: false
+        default: false
+        type: boolean
+      validator-source:
+        description: GitHub source and ref for the validator, for example owner/bripe-standards@v1.
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Validate standards manifest
+        run: >-
+          uvx --from git+https://github.com/${{ inputs.validator-source }}
+          bripe-standards check . ${{ inputs.advisory && '--advisory' || '' }}
+      - name: Run Python checks
+        if: inputs.python-checks
+        run: |
+          uv sync --dev
+          uv run ruff check .
+          uv run pytest
