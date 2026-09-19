@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "standards": "uv run --directory ../bripe-standards bripe-standards check ."
+  }
+}
