@@ -1,18 +1,13 @@
 # Enable Tach only when multiple import layers need mechanical enforcement.
 # Replace example names with this repository's actual package names.
 
-[modules]
+[[modules]]
+path = "example.domain"
 
-[[modules.module]]
-name = "example.domain"
-path = "src/example/domain"
-
-[[modules.module]]
-name = "example.application"
-path = "src/example/application"
+[[modules]]
+path = "example.application"
 depends_on = ["example.domain"]
 
-[[modules.module]]
-name = "example.adapters"
-path = "src/example/adapters"
+[[modules]]
+path = "example.adapters"
 depends_on = ["example.application", "example.domain"]
