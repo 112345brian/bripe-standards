@@ -46,3 +46,26 @@ It contains no business or domain logic.
 Graduate shared runtime code into a separate package only when at least two real
 consumers need the same stable behavior and can share a small, well-tested,
 versioned contract. Keep that package independent from these standards.
+
+## Recommended practices
+
+These are optional and not checked by the validator. Adopt them when a
+repository's size makes them pay off.
+
+- **Ratchets.** Make reviewed exceptions (dependency allowlists, scanner
+  allowlists) shrink-only: widening one requires a recorded baseline change and
+  an explicit trailer or note in the same commit.
+- **Artifact lifecycle.** Give plans, orchestration directories, and decision
+  notes a status, and treat "implemented" as transient: delete the artifact once
+  its durable content lives in docs or issues.
+- **Freshness.** Record perishable facts (version pins, tool behavior) with a
+  checked date and a recheck-by date, and cite them from the comment beside the
+  pin.
+- **Release pipeline.** Use per-change changelog fragments and one atomic,
+  verified version bump that also rewrites lockfiles that record the project's own
+  version. Small repositories may use curated release notes instead.
+- **Local-first CI.** Run the full suite locally and let hosted CI confirm a
+  clean merge, gating paid runner time on a passing local receipt for the exact
+  commit when minutes are scarce.
+- **Small boundary scanners.** Prefer a short scanner with an `--all` mode and a
+  reviewed allowlist over prose for a rule that has regressed more than once.

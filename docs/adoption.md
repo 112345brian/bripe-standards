@@ -9,7 +9,7 @@ Adopt the contract without a disruptive rewrite.
 3. Correct the reported gaps and remove advisory mode to enforce the selected
    checks.
 4. Enable stronger, selective practices only when useful. For Python projects,
-   add the `python` profile; add Tach only after imports span meaningful layers.
+   add the `python` profile; add Tach (and, for same-layer couplings, Import Linter) only after imports span meaningful layers. Treat Vulture as an advisory report.
 
 For an existing repository, preserve its working architecture. First map its
 public interfaces and critical invariants in existing docs, then make the
